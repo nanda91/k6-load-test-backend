@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "a823dee4-2e85-4af4-a7c3-fe2266bec71d",
+		"name": "Sirka User Endpoint",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3426604"
+	},
+	"item": [
+		{
+			"name": "Get List User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// NEED MORE ASSERTIONS FOR TESTING",
+							"",
+							"pm.test(\"Get user_id from list user\", function () {",
+							"   const response = pm.response.json();",
+							"   const userId = response.results[0].id",
+							"   pm.environment.set(\"user_id\", userId)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{superuser_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/user?page_size=5&page=1",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Detail User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// NEED MORE ASSERTIONS FOR TESTING"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{superuser_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/user/{{user_id}}",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"user",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

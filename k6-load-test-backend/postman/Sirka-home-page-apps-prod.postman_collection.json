@@ -1,0 +1,725 @@
+{
+	"info": {
+		"_postman_id": "eb08deb6-3097-4198-a99c-4279ad347a44",
+		"name": "Sirka-home-page-apps-prod",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19413415"
+	},
+	"item": [
+		{
+			"name": "assessment status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/assessment/check",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"assessment",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher general",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/vouchers/general?platform=apps&page=1&page_size=1",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"vouchers",
+						"general"
+					],
+					"query": [
+						{
+							"key": "platform",
+							"value": "apps"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "subscription status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response should have\",function(){",
+							"    const resp = pm.response.json();",
+							"    pm.expect(resp).to.have.property('subscription_count');",
+							"    //pm.expect(resp.subscription_count).exist;",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/user/{{id_user_prod}}/subscription-status",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"user",
+						"{{id_user_prod}}",
+						"subscription-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client coach",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response should have field like below\",()=>{",
+							"    pm.expect(pm.response.json()).to.have.property('coach_id');",
+							"    pm.expect(pm.response.json()).to.have.property('coach_name');",
+							"    pm.expect(pm.response.json()).to.have.property('coach_gender');",
+							"    pm.expect(pm.response.json()).to.have.property('coach_avatar');",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/user/client/coach",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"user",
+						"client",
+						"coach"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sirkapedia module",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/sirkapedia/module?client_id=2235&get_by=clientId",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"sirkapedia",
+						"module"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "2235"
+						},
+						{
+							"key": "get_by",
+							"value": "clientId"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user progress",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/user/progress",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"user",
+						"progress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client not read",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"Response should have field like module_id, sub_module_id,month\",()=>{",
+							"    const resp = pm.response.json();",
+							"    pm.expect(resp).to.have.property('module_id');",
+							"    pm.expect(resp).to.have.property('sub_module_id');",
+							"    pm.expect(resp).to.have.property('month');",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/sirkapedia/client/not-read",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"sirkapedia",
+						"client",
+						"not-read"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "food recall message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/meallogs/client/food-recall/message",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"meallogs",
+						"client",
+						"food-recall",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weight entries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/progress/journal/weight_entries?date={{skr}}",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"progress",
+						"journal",
+						"weight_entries"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{skr}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "is active biometric",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"response should have field is_active\",()=>{",
+							"    pm.expect(pm.response.json()).to.have.property('is_active')",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/biometric",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"biometric"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "home banner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/banner/home/",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"banner",
+						"home",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "booking next call",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/user/client/booking/next-call",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"user",
+						"client",
+						"booking",
+						"next-call"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "food journal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/food_journal/food_repository?meal_time&page=1&page_size=4",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"food_journal",
+						"food_repository"
+					],
+					"query": [
+						{
+							"key": "meal_time",
+							"value": null
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/user/status/profile/{{id_user_prod}}",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"user",
+						"status",
+						"profile",
+						"{{id_user_prod}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "referrals code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/vouchers/referrals/code",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"vouchers",
+						"referrals",
+						"code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user progress",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/onboarding/user-progress",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"onboarding",
+						"user-progress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "intake budget calorie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_prod}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_prod}}/budget-calorie/intake?date={{skr}}",
+					"host": [
+						"{{base_url_prod}}"
+					],
+					"path": [
+						"budget-calorie",
+						"intake"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{skr}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,725 @@
+{
+	"info": {
+		"_postman_id": "a9937144-bee0-41fd-8ca6-5aaa75f84138",
+		"name": "Sirka-home-page-apps-stg",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19413415"
+	},
+	"item": [
+		{
+			"name": "assessment status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/assessment/check",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"assessment",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher general",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/vouchers/general?platform=apps&page=1&page_size=1",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"vouchers",
+						"general"
+					],
+					"query": [
+						{
+							"key": "platform",
+							"value": "apps"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "subscription status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response should have\",function(){",
+							"    const resp = pm.response.json();",
+							"    pm.expect(resp).to.have.property('subscription_count');",
+							"    //pm.expect(resp.subscription_count).exist;",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/user/{{id_user_stg}}/subscription-status",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"user",
+						"{{id_user_stg}}",
+						"subscription-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client coach",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response should have field like below\",()=>{",
+							"    pm.expect(pm.response.json()).to.have.property('coach_id');",
+							"    pm.expect(pm.response.json()).to.have.property('coach_name');",
+							"    pm.expect(pm.response.json()).to.have.property('coach_gender');",
+							"    pm.expect(pm.response.json()).to.have.property('coach_avatar');",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/user/client/coach",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"user",
+						"client",
+						"coach"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sirkapedia module",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/sirkapedia/module?client_id=2235&get_by=clientId",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"sirkapedia",
+						"module"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "2235"
+						},
+						{
+							"key": "get_by",
+							"value": "clientId"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user progress",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/user/progress",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"user",
+						"progress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client not read",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"Response should have field like module_id, sub_module_id,month\",()=>{",
+							"    const resp = pm.response.json();",
+							"    pm.expect(resp).to.have.property('module_id');",
+							"    pm.expect(resp).to.have.property('sub_module_id');",
+							"    pm.expect(resp).to.have.property('month');",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/sirkapedia/client/not-read",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"sirkapedia",
+						"client",
+						"not-read"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "food recall message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/meallogs/client/food-recall/message",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"meallogs",
+						"client",
+						"food-recall",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weight entries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/progress/journal/weight_entries?date={{skr}}",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"progress",
+						"journal",
+						"weight_entries"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{skr}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "is active biometric",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"response should have field is_active\",()=>{",
+							"    pm.expect(pm.response.json()).to.have.property('is_active')",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/biometric",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"biometric"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "home banner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/banner/home/",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"banner",
+						"home",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "booking next call",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/user/client/booking/next-call",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"user",
+						"client",
+						"booking",
+						"next-call"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "food journal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/food_journal/food_repository?meal_time&page=1&page_size=4",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"food_journal",
+						"food_repository"
+					],
+					"query": [
+						{
+							"key": "meal_time",
+							"value": null
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\", ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/user/status/profile/2235",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"user",
+						"status",
+						"profile",
+						"2235"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "referrals code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/vouchers/referrals/code",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"vouchers",
+						"referrals",
+						"code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user progress",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code should be 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/onboarding/user-progress",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"onboarding",
+						"user-progress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "intake budget calorie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\",()=>{",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user_stg}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/budget-calorie/intake?date={{skr}}",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"budget-calorie",
+						"intake"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{skr}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

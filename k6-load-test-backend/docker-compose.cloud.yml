@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  k6:
+    image: loadimpact/k6:latest
+    volumes:
+      - ./scripts:/scripts
+    env_file: .env

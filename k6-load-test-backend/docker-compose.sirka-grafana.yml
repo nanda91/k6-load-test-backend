@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  k6:
+    # network_mode: "host"
+    image: loadimpact/k6:latest
+    # networks:
+    #   - k6
+    network_mode: host
+    ports:
+      - "6565:6565"
+    environment:
+      - K6_OUT=influxdb=http://10.16.135.206:8086/k6
+      - K6_INFLUXDB_PUSH_INTERVAL=2s
+    volumes:
+      - ./scripts:/scripts

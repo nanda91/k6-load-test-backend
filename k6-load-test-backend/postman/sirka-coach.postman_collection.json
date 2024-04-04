@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "d6ca655f-5620-4823-8fba-187f8011dbc8",
+		"name": "coach",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23119580"
+	},
+	"item": [
+		{
+			"name": "coaches-client",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token c8332ca496339213b893036d2eb2bfea05de407a",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_stg}}/coaches/clients",
+					"host": [
+						"{{base_url_stg}}"
+					],
+					"path": [
+						"coaches",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

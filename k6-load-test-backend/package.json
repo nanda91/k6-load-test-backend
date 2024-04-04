@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "api-user": "postman-to-k6 postman/Sirka-User-Endpoint.postman_collection.json -e postman/sirka.postman_environment.json -o scripts/k6-script-api-user.js",
+    "api-food": "postman-to-k6 postman/Sirka-Food-Endpoint.postman_collection.json -e postman/sirka.postman_environment.json -o scripts/k6-script-api-food.js",
+    "api-search-food-stg": "postman-to-k6 postman/Sirka-Search-Food-stg.postman_collection.json -e postman/sirka.postman_environment.json -o scripts/k6-script-api-search-food-stg.js",
+    "api-search-food-prod": "postman-to-k6 postman/Sirka-Search-Food-Prod.postman_collection.json -e postman/sirka.postman_environment.json -o scripts/k6-script-api-search-food-prod.js",
+    "api-home-page-apps-stg": "postman-to-k6 postman/sirka-home-page-apps-stg.postman_collection.json -e postman/Sirka.postman_environment.json -o scripts/k6-script-api-home-page-apps-stg.js",
+    "api-home-page-apps-prod": "postman-to-k6 postman/Sirka-home-page-apps-prod.postman_collection.json -e postman/Sirka.postman_environment.json -o scripts/k6-script-api-home-page-apps-prod.js",
+    "api-coach-client-stg": "postman-to-k6 postman/sirka-coach.postman_collection.json -e postman/sirka.postman_environment.json -o scripts/k6-script-api-coach-sirka-stg.js"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@apideck/postman-to-k6": "^1.8.3"
+  },
+  "name": "sirka-k6-grafana",
+  "version": "1.0.0",
+  "author": "Muhammad Luthfi <muhammadluthfi059@gmail.com>",
+  "license": "MIT"
+}
